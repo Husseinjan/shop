@@ -1,0 +1,61 @@
+.rws_title{
+    margin-top: 50px;
+}
+.main_rws{
+    margin: 10px auto;
+
+    width: 1000px;
+    height: max-content;
+    border: 2px black solid;
+    border-radius: 20px;
+    padding: 20px;
+}
+.name_rws{
+    margin: 5px 0px;
+    font-size: 24px;
+    font-weight: 600;
+}
+.book_name{
+    margin: 5px 0px;
+    font-size: 20px;
+    font-weight: 600;
+}
+.rws_i{
+    font-size: 15px;
+    color: rgb(46, 38, 38);
+    margin-right: 10px;
+}
+.text_rws{
+    font-size: 18px;
+    text-align: justify;
+    line-height: 24px;
+}
+.town_rws{
+    margin-top: 5px;
+    font-weight: bold;
+}
+.date_rws{
+    font-size: 15px;
+    margin-top: 5px;
+    font-weight: 600;
+}
+.inputs {
+    margin: 10px 160px;
+  }
+  
+ .input_rws{
+    display: inline-block;
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    width: 200px;
+    font-size: 16px;
+  }
+  
+  .input_rws:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  }
+  
