@@ -1,26 +1,28 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./main.css";
 import Header from "./Header";
 import SortButtons from "./SortButton";
+import { selfDevelop } from "./data";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Tumbler from "./Tumbler";
 
-const SelfDevelop = () => {
-  const [baza, setBaza]=useState([])
-  const [data, setData] = useState(baza);
-
-  const dispatch = useDispatch();
+export default function SelfDevelop() {
+  const [data, setData] = useState(selfDevelop);
+  const [value, setValue] = useState("");
   const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    fetch("http://f0809567.xsph.ru/data.json")
-      .then((response) => response.json())
-      .then((json) => setBaza(json));
-  }, []);
-  console.log(baza)
+  const sortPopularity = () => setData([...selfDevelop].sort((a, b) => b.bought - a.bought));
+  const sortPriceDescending = () => setData([...selfDevelop].sort((a, b) => b.price - a.price));
+  const sortPriceAscending = () => setData([...selfDevelop].sort((a, b) => a.price - b.price));
+  const sortAlphabetStart = () => setData([...selfDevelop].sort((a, b) => a.name.localeCompare(b.name)));
+  const sortAlphabetEnd = () => setData([...selfDevelop].sort((a, b) => b.name.localeCompare(a.name)));
 
-  const onAdd = (id) => {
+  const filteredBooks = data.filter((book) =>
+    book.name.toLowerCase().includes(value.toLowerCase())
+  );
+
+  const onAddToCart = (id) => {
     const itemExists = cart.some((item) => item.id === id);
 
     if (itemExists) {
@@ -37,32 +39,6 @@ const SelfDevelop = () => {
     });
   };
 
-  const sortPopularity = () => {
-    setData([...data].sort((a, b) => b.bought - a.bought));
-  };
-
-  const sortPriceDescending = () => {
-    setData([...data].sort((a, b) => b.price - a.price));
-  };
-
-  const sortPriceAscending = () => {
-    setData([...data].sort((a, b) => a.price - b.price));
-  };
-
-  const sortAlphabetStart = () => {
-    setData([...data].sort((a, b) => a.name.localeCompare(b.name)));
-  };
-
-  const sortAlphabetEnd = () => {
-    setData([...data].sort((a, b) => b.name.localeCompare(a.name)));
-  };
-
-  const [value, setValue] = useState("");
-
-  const filteredBooks = data.filter((book) =>
-    book.name.toLowerCase().includes(value.toLowerCase())
-  );
-
   return (
     <>
       <Header />
@@ -74,7 +50,7 @@ const SelfDevelop = () => {
           sortPriceAscending={sortPriceAscending}
           sortPopularity={sortPopularity}
         />
-
+    
         <div className="search-container">
           <input
             type="text"
@@ -89,7 +65,7 @@ const SelfDevelop = () => {
       </div>
 
       <div className="container">
-        {data.length > 0 ? (
+        {filteredBooks.length > 0 ? (
           filteredBooks.map((book) => {
             const { id, name, img, price, desc } = book;
 
@@ -102,7 +78,7 @@ const SelfDevelop = () => {
                   </Link>
                   <p>{desc}</p>
                   <b>{price}₽</b>
-                  <div className="add_to_cart" onClick={() => onAdd(id)}>
+                  <div className="add_to_cart" onClick={() => onAddToCart(id)}>
                     +
                   </div>
                 </div>
@@ -111,12 +87,11 @@ const SelfDevelop = () => {
           })
         ) : (
           <p>
-            По вашему запросу "<span style={{ color: "red" }}>{value}</span>" не найдено товаров
+            По вашему запросу "<span style={{ color: "red" }}>{value}</span>" не
+            найдено товаров
           </p>
         )}
       </div>
     </>
   );
-};
-
-export default SelfDevelop;
+}
