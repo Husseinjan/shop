@@ -1,0 +1,88 @@
+*{
+  text-decoration: none;
+  margin: 0px;
+  padding: 0px;
+  color: black;
+}
+.catalog li{
+  color: black;
+}
+body{
+  background-color: white;
+  color: rgb(30, 24, 24);
+  font-family: 'Montserrat' , sans-serif;
+  
+}
+.App{
+  width: 1280px;
+  margin: 50px auto;
+}
+.sort-buttons {
+margin-top: 50px;
+display: flex;
+}
+
+.sort-button {
+  border-radius: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  color: #333;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0 10px;
+  padding: 8px 16px;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+}
+
+.sort-button:hover {
+  background-color: #ccc;
+  color: #fff;
+}
+
+.sort-button:active {
+  background-color: #333;
+  color: #fff;
+  transform: translateY(1px);
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 5px;
+  border: 2px rgb(48, 45, 45) solid;
+}
+
+.search-container input[type="text"] {
+  padding: 5px;
+ border: none;
+  font-size: 14px;
+  width: 70%;
+  background-color: transparent;
+  color: #000000;
+  outline: none;
+}
+
+.search-container button {
+  border: none;
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+
+.search-container button:hover {
+  background-color: #3e8e41;
+}
+
+.search-container i {
+  color: #fff;
+}
+.p_title{
+  margin-top: 20px;
+}
